@@ -55,6 +55,7 @@ class BoggleGame {
       this.words.add(word); //adds the word to our SET of words
       this.showMessage(`Added: ${word}`, "ok"); //tells user we added the word.
     }
+    $word.val("").focus();
   }
 
   //Updating the timer for user to see:
@@ -64,7 +65,7 @@ class BoggleGame {
 
   //tick function handles each second passing
   async tick() {
-    this.secs -= -1; //decrease count by 1 (second)
+    this.secs -= 1; //decrease count by 1 (second)
     this.showTimer();
     if (this.secs === 0) {
       clearInterval(this.timer);
@@ -75,10 +76,17 @@ class BoggleGame {
   async scoreGame() {
     $(".add-word", this.board).hide(); //hide the input from user
     const res = await axios.post("/post-score", { score: this.score });
+
     if (res.data.brokeRecord) {
       this.showMessage(`New High Score: ${this.score}`, "ok");
     } else {
       this.showMessage(`Final Score: ${this.score}`, "ok");
     }
   } //This function ends the game, shows the score, and tells users if they got a new high score
+
+  resetBtn() {
+    $("#resetBtn").click(function () {
+      location.reload();
+    });
+  }
 }

@@ -1,0 +1,24 @@
+.board {
+  border: solid 10px blueviolet;
+  font-family: monospace;
+  font-size: 200%;
+  width: 400px;
+  aspect-ratio: 1/1;
+}
+.board td {
+  text-align: center;
+  width: 1.5em;
+  height: 1.5em;
+}
+.msg {
+  padding: 1em;
+  font-weight: bold;
+}
+.msg.ok {
+  color: aquamarine;
+  background-color: green;
+}
+.msg.err {
+  color: black;
+  background-color: red;
+}

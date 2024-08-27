@@ -1,34 +1,57 @@
-{% extends 'base.html' %} {% block title %}Index: Boggle Board {% endblock %} {%
-block content %}
-<!-- Boggle Board Set Up -->
-<section id="boggle">
-  <table class="board">
-    <tbody>
-      {% for row in board %}
-      <tr>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
-<!-- High Score Display -->
-<p>High Score: <b> {{ highscore }}</b> in {{ nplays }} plays</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <!-- Boggle Board Set Up -->
+    <section id="boggle">
+      <table class="board">
+        <tbody>
+          {% for row in board %}
+          <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- High Score Display -->
+      <p>High Score: <b> {{ highscore }}</b> in {{ nplays }} plays</p>
 
-<!-- Score and Timer Display -->
-<p>Score: <b class="score"> 0 </b> Seconds Left: <b class="timer"> </b></p>
+      <!-- Score and Timer Display -->
+      <p>
+        Score: <b class="score"> 0 </b> <br />
+        Time Remaining: <b class="timer"> </b>
+      </p>
 
-<!-- Form to submit your word guess -->
-<form method="POST" class="add-word">
-  <input name="word" class="word" />
-  <button>Enter</button>
-</form>
+      <!-- Form to submit your word guess -->
+      <form class="add-word" method="POST">
+        <input name="word" class="word" autofocus />
+        <button>Enter</button>
+      </form>
 
-<!-- Area to put your flash messages in when needed -->
-<p class="msg"></p>
-<!-- Area to put words in once theyve scored -->
-<ul class="words"></ul>
+      <!-- Area to put your flash messages in when needed -->
+      <p class="msg"></p>
+      <!-- Area to put words in once theyve scored -->
+      <ul class="words"></ul>
+      <button id="resetBtn">Start Over</button>
+    </section>
 
-{% endblock %}
+    <script src="http://unpkg.com/jquery"></script>
+    <!-- Includes jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- includes axios -->
+    <script src="/static/script.js"></script>
+    <!-- includes the script i write -->
+    <script>
+      let game = new BoggleGame("boggle", 60);
+      game.resetBtn();
+    </script>
+    <!-- This initializes the game -->
+  </body>
+</html>
