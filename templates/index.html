@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title %}Index: Boggle Board {% endblock %} {%
+block content %}
+<!-- Boggle Board Set Up -->
+<section id="boggle">
+  <table class="board">
+    <tbody>
+      {% for row in board %}
+      <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+<!-- High Score Display -->
+<p>High Score: <b> {{ highscore }}</b> in {{ nplays }} plays</p>
+
+<!-- Score and Timer Display -->
+<p>Score: <b class="score"> 0 </b> Seconds Left: <b class="timer"> </b></p>
+
+<!-- Form to submit your word guess -->
+<form method="POST" class="add-word">
+  <input name="word" class="word" />
+  <button>Enter</button>
+</form>
+
+<!-- Area to put your flash messages in when needed -->
+<p class="msg"></p>
+<!-- Area to put words in once theyve scored -->
+<ul class="words"></ul>
+
+{% endblock %}
